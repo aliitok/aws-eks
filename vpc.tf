@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket = "aliitok-lab-bucket-1997"
+    key    = "terraform_backend/aws-eks"
+    region = "us-east-1"
+  }
+}
+
 module "eks_vpc" {
   source  = "cookpad/eks/aws//modules/vpc"
   version = "1.31.0-rc2"
