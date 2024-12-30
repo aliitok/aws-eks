@@ -36,7 +36,7 @@ jobs:
       if: ${{ github.event_name == 'pull_request' }}
       run: |
         echo "#### Terraform Plan Output" > plan_output.md
-        terraform show -json tfplan | jq '.' >> plan_output.md
+        terraform-bin show -json tfplan | jq '.' >> plan_output.md
         gh pr comment --body-file plan_output.md
 
     - name: Terraform Apply
@@ -46,4 +46,5 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: us-east-1 # Adjust to your region
+      #AWS_DEFAULT_REGION: us-east-1 # Adjust to your region
+      GH_TOKEN: ${{ github.token }}
